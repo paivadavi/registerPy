@@ -1,4 +1,5 @@
 from tkinter import *
+import database
 
 root = Tk()
 
@@ -31,12 +32,17 @@ password_entry = Entry(root, textvariable=password_value, width=30, bd=2, font=2
 password_entry.place(x=200, y=300)
 
 # check button
-check_value = int_var
+check_value = IntVar()
 check_btn = Checkbutton(text="remember me?", variable=check_value)
 check_btn.place(x=200, y=340)
 
 register_btn = Button(text="Register", font=20, width=11, height=2,
-                      command=database.register(name_entry, surname_entry, email_entry, password_entry))
+                      command=database.register(name_value.get(),
+                                                surname_value.get(),
+                                                email_value.get(),
+                                                password_value.get()
+                                                )
+                      )
 register_btn.place(x=250, y=380)
 
 
