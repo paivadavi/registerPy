@@ -36,7 +36,7 @@ check_btn = Checkbutton(text="remember me?", variable=check_value)
 check_btn.place(x=200, y=340)
 
 register_btn = Button(text="Register", font=20, width=11, height=2,
-                      command=database.register())
+                      command=database.register(name_entry, surname_entry, email_entry, password_entry))
 register_btn.place(x=250, y=380)
 
 
