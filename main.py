@@ -1,5 +1,25 @@
 from tkinter import *
+
 import database
+from database import register
+import sqlite3 as sql
+
+
+def register():
+    connection = sql.connect('registration.db')
+    cursor = connection.cursor()
+    cursor.execute("INSERT INTO usersdata VALUES (:name_value,:surname_value,:email_value,:password_value)",
+                   {
+                       'name_value': name_value.get(),
+                       'surname_value': surname_value.get(),
+                       'email_value': email_value.get(),
+                       'password_value': password_value.get()
+
+                   })
+    connection.commit()
+    connection.close()
+
+
 
 root = Tk()
 
@@ -37,11 +57,7 @@ check_btn = Checkbutton(text="remember me?", variable=check_value)
 check_btn.place(x=200, y=340)
 
 register_btn = Button(text="Register", font=20, width=11, height=2,
-                      command=database.register(name_value.get(),
-                                                surname_value.get(),
-                                                email_value.get(),
-                                                password_value.get()
-                                                )
+                      command=register
                       )
 register_btn.place(x=250, y=380)
 
